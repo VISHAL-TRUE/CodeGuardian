@@ -1,0 +1,11 @@
+{
+  "name": "grid_constraint",
+  "description": "Grid constraint scenario — transformer limit reduced at ST01 and ST03",
+  "ev_burst_count": 8,
+  "target_station": "ST01",
+  "load_multiplier": 1.8,
+  "grid_limit_overrides": {
+    "ST01": 400,
+    "ST03": 280
+  }
+}

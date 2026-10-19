@@ -1,0 +1,547 @@
+{
+    "report_information": {
+        "tool": "CodeGuardian",
+        "description": "Intelligent Software Dependency Risk Analyzer",
+        "project": "CodeGuardian_TestProject.zip",
+        "generated_at": "2026-10-16 11:54:57"
+    },
+    "project": {
+        "name": "CodeGuardian_TestProject.zip",
+        "languages": [
+            "Go",
+            "Java",
+            "JavaScript",
+            "Python",
+            "Rust"
+        ],
+        "dependency_files": [
+            {
+                "file": "Cargo.toml",
+                "ecosystem": "Rust",
+                "path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\Cargo.toml"
+            },
+            {
+                "file": "go.mod",
+                "ecosystem": "Go",
+                "path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\go.mod"
+            },
+            {
+                "file": "package.json",
+                "ecosystem": "JavaScript/Node.js",
+                "path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\package.json"
+            },
+            {
+                "file": "pom.xml",
+                "ecosystem": "Java/Maven",
+                "path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\pom.xml"
+            },
+            {
+                "file": "requirements.txt",
+                "ecosystem": "Python",
+                "path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\requirements.txt"
+            }
+        ]
+    },
+    "dependencies": [
+        {
+            "name": "serde",
+            "version": "1.0",
+            "ecosystem": "Rust",
+            "language": "Rust",
+            "manifest_file": "Cargo.toml",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\Cargo.toml"
+        },
+        {
+            "name": "tokio",
+            "version": "1.35",
+            "ecosystem": "Rust",
+            "language": "Rust",
+            "manifest_file": "Cargo.toml",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\Cargo.toml"
+        },
+        {
+            "name": "github.com/gin-gonic/gin",
+            "version": "v1.9.1",
+            "ecosystem": "Go",
+            "language": "Go",
+            "manifest_file": "go.mod",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\go.mod"
+        },
+        {
+            "name": "github.com/stretchr/testify",
+            "version": "v1.8.4",
+            "ecosystem": "Go",
+            "language": "Go",
+            "manifest_file": "go.mod",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\go.mod"
+        },
+        {
+            "name": "express",
+            "version": "4.18.2",
+            "ecosystem": "JavaScript/Node.js",
+            "language": "JavaScript",
+            "manifest_file": "package.json",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\package.json"
+        },
+        {
+            "name": "react",
+            "version": "18.2.0",
+            "ecosystem": "JavaScript/Node.js",
+            "language": "JavaScript",
+            "manifest_file": "package.json",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\package.json"
+        },
+        {
+            "name": "jest",
+            "version": "29.7.0",
+            "ecosystem": "JavaScript/Node.js",
+            "language": "JavaScript",
+            "manifest_file": "package.json",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\package.json"
+        },
+        {
+            "name": "flask",
+            "version": "==3.0.0",
+            "ecosystem": "Python",
+            "language": "Python",
+            "manifest_file": "requirements.txt",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\requirements.txt"
+        },
+        {
+            "name": "requests",
+            "version": "==2.31.0",
+            "ecosystem": "Python",
+            "language": "Python",
+            "manifest_file": "requirements.txt",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\requirements.txt"
+        },
+        {
+            "name": "numpy",
+            "version": ">=1.26.0",
+            "ecosystem": "Python",
+            "language": "Python",
+            "manifest_file": "requirements.txt",
+            "project_path": "extracted_projects\\CodeGuardian_TestProject\\CodeGuardian_TestProject\\requirements.txt"
+        }
+    ],
+    "vulnerabilities": [
+        {
+            "name": "serde",
+            "version": "1.0",
+            "ecosystem": "Rust",
+            "manifest_file": "Cargo.toml",
+            "status": "scanned",
+            "reason": null,
+            "vulnerabilities": [],
+            "vulnerability_count": 0
+        },
+        {
+            "name": "tokio",
+            "version": "1.35",
+            "ecosystem": "Rust",
+            "manifest_file": "Cargo.toml",
+            "status": "scanned",
+            "reason": null,
+            "vulnerabilities": [
+                {
+                    "id": "GHSA-rr8g-9fpq-6wmg",
+                    "aliases": [
+                        "RUSTSEC-2025-0023"
+                    ],
+                    "severity": "LOW",
+                    "cvss_score": 2.7,
+                    "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N/E:U",
+                    "summary": "Tokio broadcast channel calls clone in parallel, but does not require `Sync`",
+                    "published": "2025-04-07T21:12:50Z",
+                    "modified": "2026-09-10T03:50:24.081979053Z"
+                }
+            ],
+            "vulnerability_count": 1
+        },
+        {
+            "name": "github.com/gin-gonic/gin",
+            "version": "v1.9.1",
+            "ecosystem": "Go",
+            "manifest_file": "go.mod",
+            "status": "error",
+            "reason": "Could not connect to OSV API: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)",
+            "vulnerabilities": [],
+            "vulnerability_count": 0
+        },
+        {
+            "name": "github.com/stretchr/testify",
+            "version": "v1.8.4",
+            "ecosystem": "Go",
+            "manifest_file": "go.mod",
+            "status": "error",
+            "reason": "Unexpected error: Remote end closed connection without response",
+            "vulnerabilities": [],
+            "vulnerability_count": 0
+        },
+        {
+            "name": "express",
+            "version": "4.18.2",
+            "ecosystem": "JavaScript/Node.js",
+            "manifest_file": "package.json",
+            "status": "error",
+            "reason": "Unexpected error: Remote end closed connection without response",
+            "vulnerabilities": [],
+            "vulnerability_count": 0
+        },
+        {
+            "name": "react",
+            "version": "18.2.0",
+            "ecosystem": "JavaScript/Node.js",
+            "manifest_file": "package.json",
+            "status": "error",
+            "reason": "Unexpected error: The read operation timed out",
+            "vulnerabilities": [],
+            "vulnerability_count": 0
+        },
+        {
+            "name": "jest",
+            "version": "29.7.0",
+            "ecosystem": "JavaScript/Node.js",
+            "manifest_file": "package.json",
+            "status": "error",
+            "reason": "Could not connect to OSV API: _ssl.c:989: The handshake operation timed out",
+            "vulnerabilities": [],
+            "vulnerability_count": 0
+        },
+        {
+            "name": "flask",
+            "version": "==3.0.0",
+            "ecosystem": "Python",
+            "manifest_file": "requirements.txt",
+            "status": "error",
+            "reason": "Unexpected error: Remote end closed connection without response",
+            "vulnerabilities": [],
+            "vulnerability_count": 0
+        },
+        {
+            "name": "requests",
+            "version": "==2.31.0",
+            "ecosystem": "Python",
+            "manifest_file": "requirements.txt",
+            "status": "scanned",
+            "reason": null,
+            "vulnerabilities": [
+                {
+                    "id": "GHSA-9hjg-9r4m-mvj7",
+                    "aliases": [
+                        "CVE-2024-47081",
+                        "PYSEC-2026-1872"
+                    ],
+                    "severity": "MEDIUM",
+                    "cvss_score": 5.3,
+                    "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+                    "summary": "Vulnerability details could not be retrieved.",
+                    "published": "Unknown",
+                    "modified": "Unknown"
+                },
+                {
+                    "id": "GHSA-9wx4-h78v-vm56",
+                    "aliases": [
+                        "CVE-2024-35195",
+                        "PYSEC-2026-1873"
+                    ],
+                    "severity": "MEDIUM",
+                    "cvss_score": 5.6,
+                    "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N",
+                    "summary": "Requests `Session` object does not verify requests after making first request with verify=False",
+                    "published": "2024-05-20T20:15:00Z",
+                    "modified": "2026-09-10T03:50:13.740879755Z"
+                },
+                {
+                    "id": "GHSA-gc5v-m9x4-r6x2",
+                    "aliases": [
+                        "CVE-2026-25645",
+                        "PYSEC-2026-2275"
+                    ],
+                    "severity": "MEDIUM",
+                    "cvss_score": 4.4,
+                    "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N",
+                    "summary": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function",
+                    "published": "2026-03-25T16:56:28Z",
+                    "modified": "2026-09-10T03:50:39.207922076Z"
+                }
+            ],
+            "vulnerability_count": 3
+        },
+        {
+            "name": "numpy",
+            "version": ">=1.26.0",
+            "ecosystem": "Python",
+            "manifest_file": "requirements.txt",
+            "status": "not_scanned",
+            "reason": "Version is a range or unsupported version format.",
+            "vulnerabilities": [],
+            "vulnerability_count": 0
+        }
+    ],
+    "licenses": [
+        {
+            "name": "serde",
+            "version": "1.0",
+            "ecosystem": "Rust",
+            "manifest_file": "Cargo.toml",
+            "license": "MIT OR Apache-2.0",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "tokio",
+            "version": "1.35",
+            "ecosystem": "Rust",
+            "manifest_file": "Cargo.toml",
+            "license": "MIT",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "github.com/gin-gonic/gin",
+            "version": "v1.9.1",
+            "ecosystem": "Go",
+            "manifest_file": "go.mod",
+            "license": "MIT",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "github.com/stretchr/testify",
+            "version": "v1.8.4",
+            "ecosystem": "Go",
+            "manifest_file": "go.mod",
+            "license": "MIT",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "express",
+            "version": "4.18.2",
+            "ecosystem": "JavaScript/Node.js",
+            "manifest_file": "package.json",
+            "license": "MIT",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "react",
+            "version": "18.2.0",
+            "ecosystem": "JavaScript/Node.js",
+            "manifest_file": "package.json",
+            "license": "MIT",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "jest",
+            "version": "29.7.0",
+            "ecosystem": "JavaScript/Node.js",
+            "manifest_file": "package.json",
+            "license": "MIT",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "flask",
+            "version": "==3.0.0",
+            "ecosystem": "Python",
+            "manifest_file": "requirements.txt",
+            "license": "BSD-3-Clause",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "requests",
+            "version": "==2.31.0",
+            "ecosystem": "Python",
+            "manifest_file": "requirements.txt",
+            "license": "Apache-2.0",
+            "classification": "Permissive",
+            "risk": "LOW"
+        },
+        {
+            "name": "numpy",
+            "version": ">=1.26.0",
+            "ecosystem": "Python",
+            "manifest_file": "requirements.txt",
+            "license": "Unknown",
+            "classification": "Other",
+            "risk": "UNKNOWN"
+        }
+    ],
+    "risk_analysis": {
+        "project": {
+            "project_score": 3.41,
+            "project_risk": "MEDIUM",
+            "total_dependencies": 10,
+            "assessed_dependencies": 3,
+            "unassessed_dependencies": 7,
+            "critical_dependencies": 0,
+            "high_dependencies": 0,
+            "medium_dependencies": 1,
+            "low_dependencies": 2,
+            "total_vulnerabilities": 4,
+            "unknown_vulnerabilities": 0,
+            "highest_dependency_score": 3.41,
+            "highest_dependency": "requests"
+        },
+        "dependencies": [
+            {
+                "name": "serde",
+                "version": "1.0",
+                "ecosystem": "Rust",
+                "vulnerability_score": 0,
+                "license_score": 1,
+                "risk_score": 0.33,
+                "risk_level": "LOW",
+                "highest_vulnerability_severity": "NONE",
+                "known_vulnerabilities": 0,
+                "unknown_vulnerabilities": 0,
+                "license": "MIT OR Apache-2.0",
+                "license_risk": "LOW"
+            },
+            {
+                "name": "tokio",
+                "version": "1.35",
+                "ecosystem": "Rust",
+                "vulnerability_score": 1,
+                "license_score": 1,
+                "risk_score": 1.1,
+                "risk_level": "LOW",
+                "highest_vulnerability_severity": "LOW",
+                "known_vulnerabilities": 1,
+                "unknown_vulnerabilities": 0,
+                "license": "MIT",
+                "license_risk": "LOW"
+            },
+            {
+                "name": "github.com/gin-gonic/gin",
+                "version": "v1.9.1",
+                "ecosystem": "Go",
+                "vulnerability_score": null,
+                "license_score": null,
+                "risk_score": null,
+                "risk_level": "NOT ASSESSED",
+                "highest_vulnerability_severity": "UNKNOWN",
+                "known_vulnerabilities": 0,
+                "unknown_vulnerabilities": 0,
+                "license": "MIT",
+                "license_risk": "LOW",
+                "scan_status": "error",
+                "scan_reason": "Could not connect to OSV API: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)"
+            },
+            {
+                "name": "github.com/stretchr/testify",
+                "version": "v1.8.4",
+                "ecosystem": "Go",
+                "vulnerability_score": null,
+                "license_score": null,
+                "risk_score": null,
+                "risk_level": "NOT ASSESSED",
+                "highest_vulnerability_severity": "UNKNOWN",
+                "known_vulnerabilities": 0,
+                "unknown_vulnerabilities": 0,
+                "license": "MIT",
+                "license_risk": "LOW",
+                "scan_status": "error",
+                "scan_reason": "Unexpected error: Remote end closed connection without response"
+            },
+            {
+                "name": "express",
+                "version": "4.18.2",
+                "ecosystem": "JavaScript/Node.js",
+                "vulnerability_score": null,
+                "license_score": null,
+                "risk_score": null,
+                "risk_level": "NOT ASSESSED",
+                "highest_vulnerability_severity": "UNKNOWN",
+                "known_vulnerabilities": 0,
+                "unknown_vulnerabilities": 0,
+                "license": "MIT",
+                "license_risk": "LOW",
+                "scan_status": "error",
+                "scan_reason": "Unexpected error: Remote end closed connection without response"
+            },
+            {
+                "name": "react",
+                "version": "18.2.0",
+                "ecosystem": "JavaScript/Node.js",
+                "vulnerability_score": null,
+                "license_score": null,
+                "risk_score": null,
+                "risk_level": "NOT ASSESSED",
+                "highest_vulnerability_severity": "UNKNOWN",
+                "known_vulnerabilities": 0,
+                "unknown_vulnerabilities": 0,
+                "license": "MIT",
+                "license_risk": "LOW",
+                "scan_status": "error",
+                "scan_reason": "Unexpected error: The read operation timed out"
+            },
+            {
+                "name": "jest",
+                "version": "29.7.0",
+                "ecosystem": "JavaScript/Node.js",
+                "vulnerability_score": null,
+                "license_score": null,
+                "risk_score": null,
+                "risk_level": "NOT ASSESSED",
+                "highest_vulnerability_severity": "UNKNOWN",
+                "known_vulnerabilities": 0,
+                "unknown_vulnerabilities": 0,
+                "license": "MIT",
+                "license_risk": "LOW",
+                "scan_status": "error",
+                "scan_reason": "Could not connect to OSV API: _ssl.c:989: The handshake operation timed out"
+            },
+            {
+                "name": "flask",
+                "version": "==3.0.0",
+                "ecosystem": "Python",
+                "vulnerability_score": null,
+                "license_score": null,
+                "risk_score": null,
+                "risk_level": "NOT ASSESSED",
+                "highest_vulnerability_severity": "UNKNOWN",
+                "known_vulnerabilities": 0,
+                "unknown_vulnerabilities": 0,
+                "license": "BSD-3-Clause",
+                "license_risk": "LOW",
+                "scan_status": "error",
+                "scan_reason": "Unexpected error: Remote end closed connection without response"
+            },
+            {
+                "name": "requests",
+                "version": "==2.31.0",
+                "ecosystem": "Python",
+                "vulnerability_score": 4,
+                "license_score": 1,
+                "risk_score": 3.41,
+                "risk_level": "MEDIUM",
+                "highest_vulnerability_severity": "MEDIUM",
+                "known_vulnerabilities": 3,
+                "unknown_vulnerabilities": 0,
+                "license": "Apache-2.0",
+                "license_risk": "LOW"
+            },
+            {
+                "name": "numpy",
+                "version": ">=1.26.0",
+                "ecosystem": "Python",
+                "vulnerability_score": null,
+                "license_score": null,
+                "risk_score": null,
+                "risk_level": "NOT ASSESSED",
+                "highest_vulnerability_severity": "UNKNOWN",
+                "known_vulnerabilities": 0,
+                "unknown_vulnerabilities": 0,
+                "license": "Unknown",
+                "license_risk": "UNKNOWN",
+                "scan_status": "not_scanned",
+                "scan_reason": "Version is a range or unsupported version format."
+            }
+        ]
+    }
+}

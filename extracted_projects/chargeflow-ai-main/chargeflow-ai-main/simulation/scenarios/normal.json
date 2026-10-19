@@ -1,0 +1,7 @@
+{
+  "name": "normal",
+  "description": "Normal weekday demand — balanced across all stations",
+  "ev_burst_count": 0,
+  "target_station": null,
+  "load_multiplier": 1.0
+}

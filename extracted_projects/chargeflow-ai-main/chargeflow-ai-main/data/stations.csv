@@ -1,0 +1,6 @@
+station_id,name,latitude,longitude,total_chargers,available_chargers,max_power_kw,current_load_kw,grid_limit_kw,queue_length,price_per_kwh
+ST01,Central Chennai,13.0827,80.2707,8,3,480.0,310.0,500.0,4,16.0
+ST02,Anna Nagar,13.085,80.2101,6,4,360.0,120.0,400.0,1,16.0
+ST03,T. Nagar,13.0418,80.2341,5,2,300.0,200.0,350.0,3,16.0
+ST04,Adyar,13.0067,80.257,10,7,600.0,180.0,650.0,0,16.0
+ST05,OMR / Perungudi,12.965,80.246,7,5,420.0,150.0,450.0,1,16.0

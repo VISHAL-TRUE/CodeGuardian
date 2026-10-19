@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        CodeGuardian - Scan Results
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <h1>
+        CodeGuardian
+    </h1>
+
+    <h2>
+        Project Scan Results
+    </h2>
+
+    <p>
+
+        Project:
+        <strong>
+            {{ project_name }}
+        </strong>
+
+    </p>
+
+
+    <!-- ================================================= -->
+    <!-- DETECTED LANGUAGES -->
+    <!-- ================================================= -->
+
+    <div class="upload-box">
+
+        <h2>
+            Detected Languages
+        </h2>
+
+        {% if languages %}
+
+            <ul>
+
+                {% for language in languages %}
+
+                    <li>
+                        {{ language }}
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>
+                No programming languages detected.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- DEPENDENCY FILES -->
+    <!-- ================================================= -->
+
+    <div class="upload-box">
+
+        <h2>
+            Detected Dependency Files
+        </h2>
+
+        {% if dependency_files %}
+
+            <ul>
+
+                {% for dependency in dependency_files %}
+
+                    <li>
+
+                        <strong>
+                            {{ dependency.file }}
+                        </strong>
+
+                        -
+
+                        {{ dependency.ecosystem }}
+
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>
+                No dependency files detected.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- DEPENDENCIES -->
+    <!-- ================================================= -->
+
+    <div class="upload-box">
+
+        <h2>
+            Detected Dependencies
+        </h2>
+
+        {% if dependencies %}
+
+            <ul>
+
+                {% for dependency in dependencies %}
+
+                    <li>
+
+                        <strong>
+                            {{ dependency.name }}
+                        </strong>
+
+                        -
+
+                        {{ dependency.version }}
+
+                        -
+
+                        {{ dependency.ecosystem }}
+
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>
+                No dependencies extracted.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- VULNERABILITY ANALYSIS -->
+    <!-- ================================================= -->
+
+    <div class="upload-box">
+
+        <h2>
+            Vulnerability Analysis
+        </h2>
+
+
+        {% if vulnerability_results %}
+
+            {% for result in vulnerability_results %}
+
+                <div>
+
+                    <h3>
+
+                        {{ result.name }}
+
+                        -
+
+                        {{ result.version }}
+
+                    </h3>
+
+                    <p>
+
+                        Ecosystem:
+
+                        <strong>
+                            {{ result.ecosystem }}
+                        </strong>
+
+                    </p>
+
+
+                    {% if result.status == "error" %}
+
+                        <p>
+
+                            ⚠️
+
+                            Vulnerability scan failed:
+
+                            {{ result.reason }}
+
+                        </p>
+
+
+                    {% elif result.status == "not_scanned" %}
+
+                        <p>
+
+                            ⚠️
+
+                            Not scanned:
+
+                            {{ result.reason }}
+
+                        </p>
+
+
+                    {% elif result.vulnerability_count == 0 %}
+
+                        <p>
+
+                            ✅
+
+                            No known vulnerabilities found.
+
+                        </p>
+
+
+                    {% else %}
+
+                        <p>
+
+                            🚨
+
+                            <strong>
+                                {{ result.vulnerability_count }}
+                            </strong>
+
+                            unique vulnerability/vulnerabilities
+                            found.
+
+                        </p>
+
+
+                        {% for vulnerability in result.vulnerabilities %}
+
+                            <div>
+
+                                <p>
+
+                                    <strong>
+                                        ID:
+                                    </strong>
+
+                                    {{ vulnerability.id }}
+
+                                </p>
+
+
+                                {% if vulnerability.aliases %}
+
+                                    <p>
+
+                                        <strong>
+                                            Aliases:
+                                        </strong>
+
+                                        {{ vulnerability.aliases | join(", ") }}
+
+                                    </p>
+
+                                {% endif %}
+
+
+                                <p>
+
+                                    <strong>
+                                        Severity:
+                                    </strong>
+
+                                    {{ vulnerability.severity }}
+
+                                </p>
+
+
+                                {% if vulnerability.cvss_score %}
+
+                                    <p>
+
+                                        <strong>
+                                            CVSS Score:
+                                        </strong>
+
+                                        {{ vulnerability.cvss_score }}
+
+                                    </p>
+
+                                {% endif %}
+
+
+                                {% if vulnerability.cvss_vector %}
+
+                                    <p>
+
+                                        <strong>
+                                            CVSS Vector:
+                                        </strong>
+
+                                        {{ vulnerability.cvss_vector }}
+
+                                    </p>
+
+                                {% endif %}
+
+
+                                <p>
+
+                                    <strong>
+                                        Summary:
+                                    </strong>
+
+                                    {{ vulnerability.summary }}
+
+                                </p>
+
+
+                                <p>
+
+                                    <strong>
+                                        Published:
+                                    </strong>
+
+                                    {{ vulnerability.published }}
+
+                                </p>
+
+                            </div>
+
+                            <hr>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                </div>
+
+                <hr>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                No vulnerability results available.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- LICENSE ANALYSIS -->
+    <!-- ================================================= -->
+
+    <div class="upload-box">
+
+        <h2>
+            License Analysis
+        </h2>
+
+        {% if license_results %}
+
+            {% for result in license_results %}
+
+                <div>
+
+                    <h3>
+
+                        {{ result.name }}
+
+                        -
+
+                        {{ result.version }}
+
+                    </h3>
+
+
+                    <p>
+
+                        Ecosystem:
+
+                        <strong>
+                            {{ result.ecosystem }}
+                        </strong>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            License:
+                        </strong>
+
+                        {{ result.license }}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Classification:
+                        </strong>
+
+                        {{ result.classification }}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            License Risk:
+                        </strong>
+
+                        {{ result.risk }}
+
+                    </p>
+
+                </div>
+
+                <hr>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                No license results available.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+<!-- =====================================================
+     RISK ANALYSIS
+====================================================== -->
+
+<section class="results-section">
+
+    <h2>Risk Analysis</h2>
+    <div class="report-buttons">
+
+    <a
+        href="{{ url_for('download_report', filename=json_report_filename) }}"
+        class="report-button"
+    >
+        Download JSON Report
+    </a>
+
+    <a
+        href="{{ url_for('download_report', filename=html_report_filename) }}"
+        class="report-button"
+    >
+        Download HTML Report
+    </a>
+    <a
+    href="{{ url_for('download_report', filename=pdf_report_filename) }}"
+    class="report-button">
+    Download PDF Report</a>
+
+</div>
+
+    {% if project_risk %}
+
+        <div class="risk-summary">
+
+            <h3>Overall Project Risk</h3>
+
+            <table class="risk-summary-table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Risk Score</th>
+                        <td>{{ project_risk.project_score }} / 10</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Risk Level</th>
+                        <td>{{ project_risk.project_risk }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total Dependencies</th>
+                        <td>{{ project_risk.total_dependencies }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Critical Dependencies</th>
+                        <td>{{ project_risk.critical_dependencies }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">High Risk Dependencies</th>
+                        <td>{{ project_risk.high_dependencies }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Medium Risk Dependencies</th>
+                        <td>{{ project_risk.medium_dependencies }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Low Risk Dependencies</th>
+                        <td>{{ project_risk.low_dependencies }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total Vulnerabilities</th>
+                        <td>{{ project_risk.total_vulnerabilities }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Unknown Vulnerability Severities</th>
+                        <td>{{ project_risk.unknown_vulnerabilities }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    {% endif %}
+
+
+    {% if risk_results %}
+
+        <h3>Dependency Risk Details</h3>
+
+        <div class="risk-results-table-wrapper">
+            <table class="risk-results-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Dependency</th>
+                        <th scope="col">Version</th>
+                        <th scope="col">Ecosystem</th>
+                        <th scope="col">Risk Score</th>
+                        <th scope="col">Risk Level</th>
+                        <th scope="col">Vulnerability Score</th>
+                        <th scope="col">Highest Vulnerability Severity</th>
+                        <th scope="col">Known Vulnerabilities</th>
+                        <th scope="col">Unknown Vulnerabilities</th>
+                        <th scope="col">License</th>
+                        <th scope="col">License Risk</th>
+                        <th scope="col">License Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for risk in risk_results %}
+                        <tr>
+                            <td>{{ risk.name }}</td>
+                            <td>{{ risk.version }}</td>
+                            <td>{{ risk.ecosystem }}</td>
+                            <td>{{ risk.risk_score }} / 10</td>
+                            <td>{{ risk.risk_level }}</td>
+                            <td>{{ risk.vulnerability_score }}</td>
+                            <td>{{ risk.highest_vulnerability_severity }}</td>
+                            <td>{{ risk.known_vulnerabilities }}</td>
+                            <td>{{ risk.unknown_vulnerabilities }}</td>
+                            <td>{{ risk.license }}</td>
+                            <td>{{ risk.license_risk }}</td>
+                            <td>{{ risk.license_score }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+</section>
+    <!-- ================================================= -->
+    <!-- SCAN STATUS -->
+    <!-- ================================================= -->
+
+    <div class="upload-box">
+
+        <h2>
+            Scan Status
+        </h2>
+
+        <p>
+            Project successfully uploaded and analyzed.
+        </p>
+
+        <p>
+            Dependency extraction completed.
+        </p>
+
+        <p>
+            Vulnerability analysis completed.
+        </p>
+
+        <p>
+            License analysis completed.
+        </p>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

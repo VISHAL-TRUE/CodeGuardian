@@ -1,0 +1,29 @@
+# Python virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Uploaded project files
+uploads/
+
+# Extracted project files
+extracted/
+
+# Generated reports
+reports/*.json
+reports/*.html
+reports/*.pdf
+
+# Environment variables
+.env
+
+# VS Code settings
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
