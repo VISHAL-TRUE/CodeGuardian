@@ -1,0 +1,3 @@
+SCRUM-1 - Implement Dependency Scanning
+
+CodeGuardian dependency scanning integration test.
