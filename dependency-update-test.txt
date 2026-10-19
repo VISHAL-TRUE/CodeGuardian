@@ -1,0 +1,3 @@
+SCRUM-5 - Dependency Update Detection
+
+CodeGuardian dependency update detection integration test.
