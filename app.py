@@ -4,7 +4,7 @@ from flask import (
     request,
     send_from_directory
 )
-
+from ai.recommendation_engine import generate_recommendations
 import os
 import zipfile
 
@@ -262,6 +262,11 @@ def upload_project():
         license_results
     )
 
+    recommendations = generate_recommendations(
+        vulnerability_results,
+        license_results,
+        risk_results["dependencies"]
+    )
 
     # =====================================================
     # CREATE REPORT DATA
@@ -299,6 +304,10 @@ def upload_project():
             risk_results[
                 "project"
             ]
+        ),
+
+        recommendations=(
+            recommendations
         )
     )
 
@@ -386,6 +395,10 @@ def upload_project():
             risk_results[
                 "project"
             ]
+        ),
+
+        recommendations=(
+            recommendations
         ),
 
         json_report_filename=(

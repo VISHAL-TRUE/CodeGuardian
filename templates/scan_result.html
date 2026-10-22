@@ -594,6 +594,58 @@
     {% endif %}
 
 </section>
+
+<section class="results-section">
+    <h2>AI-Powered Remediation Recommendations</h2>
+    {% if recommendations %}
+        {% for recommendation in recommendations %}
+            <div class="upload-box">
+                <h3>
+                    {{ recommendation.dependency }}
+                    - {{ recommendation.version }}
+                </h3>
+                <p><strong>Issue:</strong> {{ recommendation.issue }}</p>
+                <p>
+                    <strong>Severity / Risk:</strong>
+                    {{ recommendation.severity }}
+                </p>
+                <p>
+                    <strong>Why it matters:</strong>
+                    {{ recommendation.why_it_matters }}
+                </p>
+                <p>
+                    <strong>Recommendation:</strong>
+                    {{ recommendation.recommendation }}
+                </p>
+                <p>
+                    <strong>Suggested action:</strong>
+                    {{ recommendation.suggested_action }}
+                </p>
+                <p>
+                    <strong>How to verify:</strong>
+                    {{ recommendation.verification }}
+                </p>
+                <p>
+                    <strong>Priority:</strong>
+                    {{ recommendation.priority }}
+                </p>
+                <p>
+                    <strong>AI status:</strong>
+                    {{ recommendation.status }}
+                </p>
+                {% if recommendation.diagnostic %}
+                    <p>
+                        <strong>AI diagnostic:</strong>
+                        {{ recommendation.diagnostic }}
+                    </p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No actionable dependency issues requiring remediation.</p>
+    {% endif %}
+</section>
+
     <!-- ================================================= -->
     <!-- SCAN STATUS -->
     <!-- ================================================= -->
