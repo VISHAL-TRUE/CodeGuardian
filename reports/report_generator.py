@@ -74,7 +74,9 @@ def create_report_data(
 
     risk_results,
 
-    project_risk
+    project_risk,
+
+    recommendations=None
 
 ):
 
@@ -140,8 +142,11 @@ def create_report_data(
 
                 risk_results
 
-        }
+        },
 
+        "recommendations":
+
+            recommendations or []
     }
 
 # =========================================================
@@ -613,6 +618,29 @@ def generate_html_report(
         <td>{license_score_display}</td>
     </tr>
     """
+
+    recommendation_rows = ""
+    recommendations = report_data.get("recommendations", [])
+    for recommendation in recommendations:
+        recommendation_rows += f"""
+        <tr>
+            <td>{escape_html(recommendation.get("dependency", "Unknown"))}
+                {escape_html(recommendation.get("version", ""))}</td>
+            <td>{escape_html(recommendation.get("issue", "Dependency issue"))}</td>
+            <td>{escape_html(recommendation.get("severity", recommendation.get("risk_level", "UNKNOWN")))}</td>
+            <td>{escape_html(recommendation.get("why_it_matters", ""))}</td>
+            <td>{escape_html(recommendation.get("recommendation", ""))}</td>
+            <td>{escape_html(recommendation.get("suggested_action", ""))}</td>
+            <td>{escape_html(recommendation.get("priority", "UNKNOWN"))}</td>
+            <td>{escape_html(recommendation.get("status", "unknown"))}
+                {escape_html(recommendation.get("diagnostic", ""))}</td>
+        </tr>
+        """
+
+    if not recommendation_rows:
+        recommendation_rows = """
+        <tr><td colspan="8">No actionable dependency issues requiring remediation.</td></tr>
+        """
 
     language_list = ""
 
@@ -1166,6 +1194,30 @@ Dependency Risk Analysis
 
 </tbody>
 
+</table>
+
+</div>
+
+<div class="section">
+
+<h2>AI-Powered Remediation Recommendations</h2>
+
+<table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Issue</th>
+<th>Severity / Risk</th>
+<th>Why It Matters</th>
+<th>Recommendation</th>
+<th>Suggested Action</th>
+<th>Priority</th>
+<th>AI Status / Diagnostic</th>
+</tr>
+</thead>
+<tbody>
+{recommendation_rows}
+</tbody>
 </table>
 
 </div>
@@ -2442,6 +2494,64 @@ def generate_pdf_report(
     story.append(
         risk_table
     )
+
+    # =====================================================
+    # AI-POWERED REMEDIATION RECOMMENDATIONS
+    # =====================================================
+
+    story.append(
+        Paragraph(
+            "AI-Powered Remediation Recommendations",
+            heading_style
+        )
+    )
+
+    recommendations = report_data.get("recommendations", [])
+    if not recommendations:
+        story.append(
+            Paragraph(
+                "No actionable dependency issues requiring remediation.",
+                normal_style
+            )
+        )
+
+    for recommendation in recommendations:
+        story.append(
+            Paragraph(
+                "<b>Dependency:</b> "
+                + escape_html(recommendation.get("dependency", "Unknown"))
+                + " "
+                + escape_html(recommendation.get("version", "")),
+                normal_style
+            )
+        )
+        for label, key, fallback in (
+            ("Issue", "issue", "Dependency issue"),
+            ("Severity / Risk", "severity", "UNKNOWN"),
+            ("Why it matters", "why_it_matters", ""),
+            ("Recommendation", "recommendation", ""),
+            ("Suggested action", "suggested_action", ""),
+            ("Priority", "priority", "UNKNOWN"),
+            ("AI status", "status", "unknown"),
+        ):
+            story.append(
+                Paragraph(
+                    "<b>"
+                    + label
+                    + ":</b> "
+                    + escape_html(recommendation.get(key, fallback)),
+                    normal_style
+                )
+            )
+        diagnostic = recommendation.get("diagnostic")
+        if diagnostic:
+            story.append(
+                Paragraph(
+                    "<b>AI diagnostic:</b> " + escape_html(diagnostic),
+                    normal_style
+                )
+            )
+        story.append(Spacer(1, 8))
 
     # =====================================================
 

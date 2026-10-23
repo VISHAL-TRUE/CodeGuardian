@@ -14,9 +14,9 @@ uploads/
 extracted/
 
 # Generated reports
-reports/*.json
-reports/*.html
-reports/*.pdf
+reports/generated/*.json
+reports/generated/*.html
+reports/generated/*.pdf
 
 # Environment variables
 .env
